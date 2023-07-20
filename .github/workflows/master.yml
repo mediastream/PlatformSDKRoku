@@ -1,0 +1,35 @@
+
+name: 'Deploy production'
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: production
+      BRANCH: production
+      TAG: ${{ github.ref }}
+    steps:
+      - name: 'Configure AWS Credentials'
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: 'Configuring Node.js'
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - name: 'Checkout Changes'
+        uses: actions/checkout@v2-beta
+        with:
+          fetch-depth: 1
+      - name: 'Setup SSH agent'
+        uses: webfactory/ssh-agent@v0.4.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: 'Build and deploy'
+        run: bash ./bash/deploy.sh
