@@ -13,13 +13,13 @@ First of all we need to download the package that contains the Mediastream SDK f
 Latest version:
 
 ```
-https://platform.s-mdstrm.com/roku_sdk/MediaStreamPlayer.pkg
+https://player.cdn.mdstrm.com/roku_sdk/MediaStreamPlayer.pkg
 ```
 
 Specified version
 
 ```
-https://platform.s-mdstrm.com/roku_sdk/0.0.1/MediaStreamPlayer.pkg
+https://player.cdn.mdstrm.com/roku_sdk/0.0.1/MediaStreamPlayer.pkg
 ```
 
 Once downloaded we need to add it to our project. To do this we need to create a folder called `source` at the base of our project and inside this folder create a new folder called `packageFile` and place MediaStreamPlayer.pkg inside it.
