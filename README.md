@@ -105,7 +105,7 @@ To play a content it is necessary to pass to the sdk a configuration file that c
 | id | String | Yes | Video ID |
 | account | String | Yes | Account ID |
 | type | MediastreamPlayerConfig.VideoTypes | YES | Video Type. posible values: `VOD`, `LIVE`|
-| environment | MediastreamPlayerConfig.Environments | No | Environment where the video is located, `PRODUCTION` or `DEV`. Default: `PRODUCTION` |
+| environmentType | MediastreamPlayerConfig.Environments | No | Environment where the video is located, `PRODUCTION` or `DEV`. Default: `PRODUCTION` |
 | startAt | Number | No | Skip or seek at starting, used in keep watching so this starts the video at the same point where the user left it. |
 
 It's important to mention that Mediastream SDK contains a player so there is no need for an external player or application, don't need to make any player etc. If any player is running, it's the application’s responsibility to close that player before setting up Mediastream SDK as in roku it will allow to create only one player instance.
