@@ -1,9 +1,10 @@
 function getLiveConfig(config as dynamic, msConfig as dynamic) as object
   configData = {}
   configData = config
-  configData.id = "60b578b060947317de7b57ac"
-  configData.accountID = "5fea0f3673148d5d52cf6a76"
+  configData.id = "64addf1ef36ef35077f2997e"
+  configData.accountID = "64a2f7945ea2ca18c978b025"
   configData.type = msConfig.videoTypes.LIVE
-  configData.environment = msConfig.environment.PRODUCTION
+  configData.videoFormat = msConfig.audioVideoFormat.DASH
+  configData.environmentType = msConfig.environmentType.DEV
   return configData
 end function
