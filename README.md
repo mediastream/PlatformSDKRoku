@@ -19,7 +19,7 @@ https://player.cdn.mdstrm.com/roku_sdk/MediaStreamPlayer.pkg
 Specified version
 
 ```
-https://player.cdn.mdstrm.com/roku_sdk/0.0.2/MediaStreamPlayer.pkg
+https://player.cdn.mdstrm.com/roku_sdk/3.0.0/MediaStreamPlayer.pkg
 ```
 
 Once downloaded we need to add it to our project. To do this we need to create a folder called `source` at the base of our project and inside this folder create a new folder called `packageFile` and place MediaStreamPlayer.pkg inside it.
@@ -107,6 +107,7 @@ To play a content it is necessary to pass to the sdk a configuration file that c
 | type | MediastreamPlayerConfig.VideoTypes | YES | Video Type. posible values: `VOD`, `LIVE`|
 | environmentType | MediastreamPlayerConfig.Environments | No | Environment where the video is located, `PRODUCTION` or `DEV`. Default: `PRODUCTION` |
 | startAt | Number | No | Skip or seek at starting, used in keep watching so this starts the video at the same point where the user left it. |
+| adUrl | String | No | VAST/VMAP url |
 
 It's important to mention that Mediastream SDK contains a player so there is no need for an external player or application, don't need to make any player etc. If any player is running, it's the application’s responsibility to close that player before setting up Mediastream SDK as in roku it will allow to create only one player instance.
 
