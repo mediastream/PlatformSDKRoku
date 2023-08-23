@@ -112,3 +112,10 @@ To play a content it is necessary to pass to the sdk a configuration file that c
 It's important to mention that Mediastream SDK contains a player so there is no need for an external player or application, don't need to make any player etc. If any player is running, it's the application’s responsibility to close that player before setting up Mediastream SDK as in roku it will allow to create only one player instance.
 
 There are several ways to integrate the SDK according to the differents needs but in this repository you can find a example so that you can familiarize yourself with its use.
+
+### Important
+When you want to use SDK with Roku RAF (Roku Ad Framework) or Google IMA functionality always include following line into your application "manifest" file:
+
+```
+bs_libs_required=roku_ads_lib,googleima3
+```
