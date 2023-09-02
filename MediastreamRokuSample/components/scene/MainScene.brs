@@ -17,6 +17,7 @@ sub setObservers()
     m.top.observeField("focusedChild", "onFocusedChildChange")
     m.top.observeField("msPlayerVideoPosition", "onMsPlayerVideoPositionChanged")
     m.top.observeField("msPlayerVideoStatus", "onMsPlayerVideoStatusChanged")
+    m.top.observeField("isSDKTaskFinished", "OnSDKTaskFinished")
     m.mediaStreamLableList.observeField("itemSelected", "onItemSelected")
 end sub
 
@@ -65,8 +66,8 @@ function initPlayer()
     print "MainScene : initPlayer"
     m.SDKPath = "pkg:/source/packageFile/MediaStreamPlayer.pkg"
     if(m.mediaStreamPlayer <> invalid)
-       m.msRokuPlayerContainer.removeChild(m.mediaStreamPlayer)
-       m.mediaStreamPlayer = invalid
+        m.msRokuPlayerContainer.removeChild(m.mediaStreamPlayer)
+        m.mediaStreamPlayer = invalid
     end if
     m.mediaStreamPlayer = CreateObject("roSGNode", "MediaStreamPlayer")
     m.mediaStreamPlayer.id = "mediaStreamPlayer"
@@ -75,7 +76,7 @@ function initPlayer()
     m.mediaStreamPlayer.observeField("SDKStatus", "onSDKStatusChanged")
 end function
 
-function onSDKStatusChanged(event as Dynamic)
+function onSDKStatusChanged(event as dynamic)
     payload = event.getData()
     print "MainScene : onSDKStatusChanged : payload : " payload
     if payload.status = "Loaded" then m.isSDKLoaded = true
@@ -89,8 +90,16 @@ function onMsPlayerVideoStatusChanged(eventData as dynamic)
     end if
 end function
 
+function OnSDKTaskFinished(eventData as dynamic)
+    event = eventData.getData()
+    print "MainScene : OnSDKTaskFinished " event
+    if (event = true)
+        showPlayerList()
+    end if
+end function
+
 function onMsPlayerVideoPositionChanged(eventData as dynamic)
-    ' print "MainScene : onMsPlayerVideoPositionChanged " eventData.getData()
+    'print "MainScene : onMsPlayerVideoPositionChanged " eventData.getData()
 end function
 
 sub showPlayerList()
@@ -101,12 +110,15 @@ sub showPlayerList()
     end if
 end sub
 
-function onKeyEvent(key as String, press as Boolean) as Boolean
+function onKeyEvent(key as string, press as boolean) as boolean
     result = false
     if (press)
         print "MainScene : onKeyEvent : key = " + key + " press = " + press.ToStr()
         if (key = "up" or key = "down")
         else if (key = "back")
+            if m.mediaStreamPlayer <> invalid
+                m.mediaStreamPlayer.callFunc("destory")
+            end if
             showPlayerList()
             result = true
         end if

@@ -4,6 +4,7 @@
     <interface>
         <field id="msPlayerVideoStatus" type="assocarray" alwaysNotify="true"/>
         <field id="msPlayerVideoPosition" type="assocarray" alwaysNotify="true"/>
+        <field id="isSDKTaskFinished" type="boolean" alwaysNotify="true"/>
     </interface>
     <children>
       <poster

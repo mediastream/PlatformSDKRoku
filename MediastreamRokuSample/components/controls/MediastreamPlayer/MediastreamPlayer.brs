@@ -19,7 +19,7 @@ function initializeSDK(msPlayerSDKPath as string)
         m.mediastreamRokuPlayerSDK.observeField("loadStatus", "mediastreamRokuPlayerSDKLoaded")
         m.mediastreamRokuPlayerSDK.uri = msPlayerSDKPath
     else
-        m.top.SDKStatus = {status: "Error", message : "Please provide valid SDK package file path."}
+        m.top.SDKStatus = { status: "Error", message: "Please provide valid SDK package file path." }
     end if
 end function
 
@@ -27,9 +27,9 @@ function mediastreamRokuPlayerSDKLoaded()
     print "MediaStreamPlayer : mediastreamRokuPlayerSDKLoaded : loadStatus : " m.mediastreamRokuPlayerSDK.loadStatus
     status = m.mediastreamRokuPlayerSDK.loadStatus
     if (m.mediastreamRokuPlayerSDK.loadStatus = "ready")
-        m.top.SDKStatus = {status: "Loaded", message : "SDK Loaded Successfully"}
+        m.top.SDKStatus = { status: "Loaded", message: "SDK Loaded Successfully" }
     else
-        m.top.SDKStatus = {status: status, message : "SDK "+status}
+        m.top.SDKStatus = { status: status, message: "SDK " + status }
     end if
 end function
 
@@ -38,7 +38,7 @@ function startPlayback()
     if (m.mediastreamRokuPlayerSDK.loadStatus = "ready" and m.mediaStreamVideoPlayer <> invalid)
         m.mediaStreamVideoPlayer.callFunc("startPlayback")
     else
-        m.top.SDKStatus = {status: "Error", message : "SDK not loaded or MediaStream player not initialized."}
+        m.top.SDKStatus = { status: "Error", message: "SDK not loaded or MediaStream player not initialized." }
     end if
 end function
 
@@ -63,9 +63,9 @@ function setupPlayer(playerType as string) as boolean
         config = m.msConfig.mediaStreamPlayerConfig
         addEventListeners()
         if playerType = "vodPlayer"
-            configData = getVODConfig(config, m.msConfig)
+            configData = getVODPlayerConfig(config, m.msConfig)
         else if playerType = "liveVideo"
-            configData = getLiveConfig(config, m.msConfig)
+            configData = getLiveVideoConfig(config, m.msConfig)
         else
             removeEventListeners()
         end if
@@ -126,14 +126,16 @@ end function
 
 sub onStoppedVideoPlayer()
     print "MediaStreamPlayer : onStoppedVideoPlayer"
-    if m.mediaStreamVideoPlayer.isVideoFinished
+    if (m.mediaStreamVideoPlayer <> invalid and m.mediaStreamVideoPlayer.isVideoFinished)
         destory()
+        m.scene.isSDKTaskFinished = true
     end if
 end sub
 
 sub destory()
     print "MediaStreamPlayer : destory"
     removeEventListeners()
+    m.top.removeChild(m.mediaStreamVideoPlayer)
     m.mediaStreamVideoPlayer = invalid
 end sub
 
@@ -143,7 +145,7 @@ function onFocusedChildChange()
     end if
 end function
 
-function onKeyEvent(key as String, press as Boolean) as Boolean
+function onKeyEvent(key as string, press as boolean) as boolean
     result = false
     if (press)
         print "MediaStreamPlayer : onKeyEvent : key = " + key + " press = " + press.ToStr()
