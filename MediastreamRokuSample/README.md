@@ -1,1 +1,2 @@
-# Roku_MediastreamPlayer_SDK_Example
+# MediastreamPlatformSDKRokuTV
+Mediastream Roku TV SDK
