@@ -1,7 +1,7 @@
 title=Mediastream ROKU SDK Example
-major_version=6
+major_version=7
 minor_version=0
-build_version=101720231
+build_version=102620230
 
 mm_icon_focus_fhd=pkg:/images/poster_fhd.png
 mm_icon_focus_hd=pkg:/images/poster_hd.png
