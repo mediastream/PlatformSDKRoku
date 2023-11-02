@@ -19,7 +19,7 @@ https://player.cdn.mdstrm.com/roku_sdk/MediaStreamPlayer.pkg
 Specified version
 
 ```
-https://player.cdn.mdstrm.com/roku_sdk/6.0.1/MediaStreamPlayer.pkg
+https://player.cdn.mdstrm.com/roku_sdk/7.0.1/MediaStreamPlayer.pkg
 ```
 
 Once downloaded we need to add it to our project. To do this we need to create a folder called `source` at the base of our project and inside this folder create a new folder called `packageFile` and place MediaStreamPlayer.pkg inside it.
